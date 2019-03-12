@@ -5,7 +5,7 @@ urlpatterns = [
     # home page view and search all entries
     path('', views.index, name='index'),
     # view entry
-    path('view_entry/<int:post_id>/', views.view_entry, name='view_entry'),
+    path('view_entry/<int:entry_id>/', views.view_entry, name='view_entry'),
     # new user
     path('new_user/', views.new_user, name='new_user'),
 
@@ -15,14 +15,14 @@ urlpatterns = [
     # add entry
     path('new_entry/', views.new_entry, name='new_entry'),
     # edit entry
-    path('edit_entry/', views.edit_entry, name='edit_entry'),
+    path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
     # delete entry
-    path('delete_entry/', views.delete_entry, name='delete_entry'),
+    path('delete_entry/<int:entry_id>/', views.delete_entry, name='delete_entry'),
 
     # add related item
-    path('new_related/', views.new_related, name='new_related'),
+    path('new_related/<int:entry_id>/', views.new_related, name='new_related'),
     # edit related item
-    path('edit_related/', views.edit_related, name='edit_related'),
+    path('edit_related/<int:item_id>/', views.edit_related, name='edit_related'),
     # delete related item
-    path('delete_related/', views.delete_related, name='delete_related'),
+    path('delete_related/<int:item_id>', views.delete_related, name='delete_related'),
 ]

@@ -1,10 +1,24 @@
 {% extends 'wiki_app/base.html' %}
 
 {% block content %}
-<h1>Home</h1>
+<h1>WIKI</h1>
+
+{% if request.user.is_authenticated %}
+<h4>{{request.user}}</h4>
+{% endif %}
+
 <a href="{% url 'login' %}">Login</a>
 <a href="{% url 'logout' %}">Logout</a>
 <a href="{% url 'new_user' %}">New User</a>
 <br>
-<a href="{% url 'view_entry' 2 %}">Entry Title</a>
+
+{% for eachEntry in all_entries %}
+    <a href="{% url 'view_entry' eachEntry.id %}"><strong>{{ eachEntry.title }}</strong></a>
+    <br>
+    {{ eachEntry.text }}
+    <br>
+    <em>{{ eachEntry.user_model_fk }}</em>
+    <em>{{ eachEntry.update_date }}</em>
+    <br>
+{% endfor %}
 {% endblock %}
