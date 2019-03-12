@@ -2,6 +2,27 @@ body{
     margin: 1% 5% 5% 5%;
 }
 img{
-    width: 10%;
+    width: 100%;
     height: auto;
+}
+#view_grid{
+    display: grid;
+    grid-template-columns: 3fr 1fr 2fr;
+}
+
+.view_body{
+    margin: 1%;
+    grid-column: 1;
+}
+
+.view_image{
+    margin: 1%;
+    grid-column: 2;
+}
+
+.view_aside{
+    background: gray;
+    padding: 1%;
+    border-radius: 1%;
+    grid-column: 3;
 }

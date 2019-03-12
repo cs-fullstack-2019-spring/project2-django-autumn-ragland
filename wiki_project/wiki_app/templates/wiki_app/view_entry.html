@@ -1,24 +1,40 @@
 {% extends 'wiki_app/base.html' %}
 
 {% block content %}
+<div id="view_grid">
 
-<h1>{{ entry.title }}</h1>
-<br>
-{{ entry.text }}
-<br>
-<img src="{{ entry.image }}" alt="image">
-<br>
-{{ entry.author }}
+    <section class="view_body">
+    <h1>{{ entry.title }}</h1>
+    <br>
+    {{ entry.text }}
+    <br>
+    {{ entry.author }}
+    <br>
+    <a href="{% url 'index' %}">Back To Home</a>
+    </section>
 
-{% if related %}
-<hr>
-Title: {{ related.title }}
-<br>
-Text: {{ related.text }}
-<br>
-<img src="{{ related.image }}" alt="image">
-<br>
-{% endif %}
-<a href="{% url 'index' %}">Back To Home</a>
+    <section class="view_image">
+    <img src="{{ entry.image }}" alt="image">
+    </section>
 
+    {% if related %}
+    <section class="view_aside">
+    <h4>Related Info</h4>
+    Title: {{ related.title }}
+    <br>
+    Text: {{ related.text }}
+    <br>
+    <img src="{{ related.image }}" alt="image">
+    <br>
+    </section>
+    {% else %}
+    <section class="view_aside">
+    <h4>Related Info</h4>
+    <p>There is no related info</p>
+    </section>
+    {% endif %}
+
+
+
+</div>
 {% endblock %}
