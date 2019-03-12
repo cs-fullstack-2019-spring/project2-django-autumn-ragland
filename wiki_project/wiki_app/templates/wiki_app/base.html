@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wiki App</title>
+    {% load static %}
+    <link rel="stylesheet" href="../../static/wiki_app/css/bootstrap.css">
+</head>
+<body>
+
+<nav>
+    <a href="{% url 'index' %}">Home</a>
+    <a href="{% url 'my_entries' %}">My Entries</a>
+    <a href="{% url 'new_entry' %}">New Entry</a>
+</nav>
+
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends 'wiki_app/base.html' %}
+
+{% block content %}
+<h1>Home</h1>
+<a href="{% url 'login' %}">Login</a>
+<a href="{% url 'logout' %}">Logout</a>
+<a href="{% url 'new_user' %}">New User</a>
+<br>
+<a href="{% url 'view_entry' %}">Entry Title</a>
+{% endblock %}
