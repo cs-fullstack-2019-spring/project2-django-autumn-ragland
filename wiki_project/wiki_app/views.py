@@ -7,7 +7,7 @@ def index(request):
 
 
 # view entry
-def view_entry(request):
+def view_entry(request, post_id):
     return render(request, 'wiki_app/view_entry.html')
 
 

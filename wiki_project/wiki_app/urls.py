@@ -5,7 +5,7 @@ urlpatterns = [
     # home page view and search all entries
     path('', views.index, name='index'),
     # view entry
-    path('view_entry/', views.view_entry, name='view_entry'),
+    path('view_entry/<int:post_id>/', views.view_entry, name='view_entry'),
     # new user
     path('new_user/', views.new_user, name='new_user'),
 
