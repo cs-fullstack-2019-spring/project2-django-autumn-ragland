@@ -1,5 +1,10 @@
 {% extends 'wiki_app/base.html' %}
 
 {% block content %}
-<h1>add or edit related item</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Submit</button>
+    <a href="{% url 'my_entries' %}">Back</a>
+</form>
 {% endblock %}

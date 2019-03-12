@@ -9,5 +9,16 @@
 <img src="{{ entry.image }}" alt="image">
 <br>
 {{ entry.author }}
+
+{% if related %}
+<hr>
+Title: {{ related.title }}
+<br>
+Text: {{ related.text }}
+<br>
+<img src="{{ related.image }}" alt="image">
+<br>
+{% endif %}
 <a href="{% url 'index' %}">Back To Home</a>
+
 {% endblock %}
