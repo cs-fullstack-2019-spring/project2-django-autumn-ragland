@@ -19,10 +19,9 @@ def index(request):
 def view_entry(request, entry_id):
     # get entry
     entry = EnrtyModel.objects.get(pk=entry_id)
-    # get related info BROKEN
-    linked_entry = get_object_or_404(EnrtyModel, pk=entry_id)
-    related_info = RelatedItemModel.objects.filter(entry_model_fk=linked_entry)
-    # pass entry and related info HALF BROKEN
+    # get related info
+    related_info = RelatedItemModel.objects.filter(entry_model_fk=entry)
+    # pass entry and related info
     context = {
         'entry': entry,
         'related': related_info

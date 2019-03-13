@@ -21,8 +21,12 @@ img{
 }
 
 .view_aside{
-    background: gray;
+    background: lightgray;
     padding: 1%;
     border-radius: 1%;
     grid-column: 3;
+}
+
+.related_image{
+    width: 50%;
 }

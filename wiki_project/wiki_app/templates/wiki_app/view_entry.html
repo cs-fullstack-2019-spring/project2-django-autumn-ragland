@@ -19,12 +19,12 @@
 
     {% if related %}
     <section class="view_aside">
-    <h4>Related Info</h4>
-    Title: {{ related.title }}
-    <br>
-    Text: {{ related.text }}
-    <br>
-    <img src="{{ related.image }}" alt="image">
+    <h3>Related Info</h3>
+        {% for eachItem in related %}
+        <h4>{{ eachItem.title }}</h4>
+        <p>{{ eachItem.text }}</p>
+        <img class="related_image" src="{{ eachItem.image }}" alt="image">
+        {% endfor %}
     <br>
     </section>
     {% else %}
