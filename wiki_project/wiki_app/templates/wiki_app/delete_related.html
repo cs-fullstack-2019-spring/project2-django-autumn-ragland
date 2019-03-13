@@ -1,5 +1,11 @@
 {% extends 'wiki_app/base.html' %}
 
 {% block content %}
-<h1>delete related item</h1>
+<form method="POST">
+    {% csrf_token %}
+    <h4>Are you sure you want to delete {{ item.title }}</h4>
+    <button>Yes</button>
+    <br>
+    <a href="{% url 'my_entries' %}">BACK</a>
+</form>
 {% endblock %}

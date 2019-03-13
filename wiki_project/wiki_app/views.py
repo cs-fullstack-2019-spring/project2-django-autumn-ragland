@@ -26,9 +26,7 @@ def view_entry(request, entry_id):
         'entry': entry,
         'related': related_info
     }
-    print(entry.image.path)
-    print(entry.image.url)
-    print(entry.image.name)
+
     # render view entry
     return render(request, 'wiki_app/view_entry.html', context)
 
@@ -73,7 +71,7 @@ def my_entries(request):
     return render(request, 'wiki_app/my_entries.html', context)
 
 
-# add new entry
+# add new entry NEWLY BROKEN :(
 def new_entry(request):
     # for logged in users
     if request.user.is_authenticated:
@@ -81,10 +79,17 @@ def new_entry(request):
         form = EntryForm(request.POST or None)
         # determine logged in user
         current_user = UserModel.objects.get(name=request.user)
+        print(current_user)
         if request.method == 'POST':
+
+            # allow a default image/no image selection
+            tempImageFile = request.FILES
+            if not request.FILES:
+                tempImageFile = 'images/default.jpeg'
+
             # on submit add entry to model with logged in user fk
             EnrtyModel.objects.create(title=request.POST['title'], text=request.POST['text'],
-                                      update_date=request.POST['update_date'], image=request.FILES['image'],
+                                       image=tempImageFile,
                                       user_model_fk=current_user)
             # on submit render home page
             return redirect('index')
@@ -174,7 +179,6 @@ def view_related(request, entry_id):
 # edit related item BROKEN
 def edit_related(request, item_id):
     clicked_item = RelatedItemModel.objects.get(pk=item_id)
-    print(clicked_item)
     form = RelatedItemForm(request.POST or None, request.FILES or None, instance=clicked_item)
 
     if request.method == 'POST':

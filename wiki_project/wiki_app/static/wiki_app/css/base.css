@@ -5,9 +5,10 @@ img{
     width: 100%;
     height: auto;
 }
+
 #view_grid{
     display: grid;
-    grid-template-columns: 3fr 1fr 2fr;
+    grid-template-columns: 3fr 2fr 2fr;
 }
 
 .view_body{
@@ -19,7 +20,6 @@ img{
     margin: 1%;
     grid-column: 2;
 }
-
 .view_aside{
     background: lightgray;
     padding: 1%;
@@ -27,6 +27,39 @@ img{
     grid-column: 3;
 }
 
-.related_image{
+#index_grid{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.index_body{
+    grid-column: 1;
+}
+.index_grid_image{
+    grid-column: 2;
+}
+.index_image{
     width: 50%;
+    align-content: center;
+    padding: 1%;
+    margin-bottom: 1%;
+
+}
+
+
+.related_image{
+    width: 100%;
+}
+
+.footer_base{
+    text-align: center;
+    background: lightgray;
+    padding: 1%;
+    margin-top: 1%;
+}
+
+nav{
+    text-align: center;
+    background: lightgray;
+    padding:1%;
+    margin-bottom: 1%;
 }

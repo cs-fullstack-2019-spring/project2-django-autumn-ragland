@@ -4,27 +4,31 @@
 <h1>WIKI</h1>
 
 {% if request.user.is_authenticated %}
-<a href="{% url 'logout' %}">Logout</a>
 <h4>{{request.user}}</h4>
+<a href="{% url 'logout' %}">Logout</a>
 {% else %}
 <a href="{% url 'login' %}">Login</a>
-<a href="{% url 'logout' %}">Logout</a>
 <a href="{% url 'new_user' %}">New User</a>
 <br>
 {% endif %}
 
 {% if all_entries %}
-
+<div id="index_grid">
 {% for eachEntry in all_entries %}
-    <a href="{% url 'view_entry' eachEntry.id %}"><strong>{{ eachEntry.title }}</strong></a>
-    <br>
-    {{ eachEntry.text }}
-    <br>
-    <em>{{ eachEntry.user_model_fk }}</em>
-    <em>{{ eachEntry.update_date }}</em>
-    <br>
+    <section class="index_body">
+        <a href="{% url 'view_entry' eachEntry.id %}"><strong>{{ eachEntry.title }}</strong></a>
+        <br>
+        {{ eachEntry.text }}
+        <br>
+        <em>{{ eachEntry.user_model_fk }}</em>
+        <em>{{ eachEntry.update_date }}</em>
+        <br>
+    </section>
+    <section class="index_grid_image">
+        <img class="index_image" src="{{ eachEntry.image.url }}" alt="image">
+    </section>
 {% endfor %}
-
+</div>
 {% else %}
 
 <h2>There are no entries</h2>
