@@ -107,7 +107,7 @@ def edit_entry(request, entry_id):
     # grab entry to edit
     entry_item = get_object_or_404(EnrtyModel, pk=entry_id)
     # populate entry form
-    form = EntryForm(request.POST or None, instance=entry_item)
+    form = EntryForm(request.POST or None, request.FILES or None, instance=entry_item)
 
     if request.method == 'POST':
         # on submit save edits
@@ -161,13 +161,26 @@ def new_related(request, entry_id):
     return render(request, 'wiki_app/new_related.html', context)
 
 
+# view related items
+def view_related(request, entry_id):
+    linked_entry = EnrtyModel.objects.get(pk=entry_id)
+    related = RelatedItemModel.objects.filter(entry_model_fk=linked_entry)
+    context = {
+        'related': related
+    }
+    return render(request, 'wiki_app/view_related.html', context)
+
+
 # edit related item BROKEN
 def edit_related(request, item_id):
-    related_item = get_object_or_404(RelatedItemModel, pk=item_id)
-    form = RelatedItemForm(request.POST or None, instance=related_item)
+    clicked_item = RelatedItemModel.objects.get(pk=item_id)
+    print(clicked_item)
+    form = RelatedItemForm(request.POST or None, request.FILES or None, instance=clicked_item)
+
     if request.method == 'POST':
         form.save()
         return redirect('my_entries')
+
     context = {
         'form': form
     }

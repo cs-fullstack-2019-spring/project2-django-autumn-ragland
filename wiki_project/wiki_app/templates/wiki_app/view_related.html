@@ -1,0 +1,19 @@
+{% extends 'wiki_app/base.html' %}
+
+{% block content %}
+
+{% if related %}
+
+{% for eachItem in related %}
+<h3>{{ eachItem.title }}</h3>
+{{ eachItem.text }}
+<a href="{% url 'edit_related' eachItem.id %}">Edit</a>
+<a href="{% url 'delete_related' eachItem.id %}">Delete</a>
+<br>
+{% endfor %}
+<a href="{% url 'my_entries' %}">Back</a>
+{% else %}
+<h2>There is no related info </h2>
+{% endif %}
+
+{% endblock %}

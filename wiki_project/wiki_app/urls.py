@@ -24,9 +24,13 @@ urlpatterns = [
 
     # add related item
     path('new_related/<int:entry_id>/', views.new_related, name='new_related'),
+    # view related items to edit
+    path('view_related/<int:entry_id>', views.view_related, name='view_related'),
     # edit related item
     path('edit_related/<int:item_id>/', views.edit_related, name='edit_related'),
     # delete related item
     path('delete_related/<int:item_id>', views.delete_related, name='delete_related'),
+
+    # image field render
     path('images/<path:path>/', serve, {'document_root': settings.MEDIA_ROOT, }),
 ]
