@@ -21,7 +21,7 @@ class EnrtyModel(models.Model):
     title = models.CharField(max_length=500, default='')
     text = models.TextField(default='')
     create_date = models.DateTimeField(null=True, auto_created=True)
-    update_date = models.DateTimeField(default=timezone.now, null=True)
+    update_date = models.DateTimeField(auto_now_add=True, null=True)
     image = models.ImageField(upload_to='images', null=True, blank=True)
     user_model_fk = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True, blank=True)
 

@@ -13,7 +13,7 @@ class UserForm(forms.ModelForm):
 class EntryForm(forms.ModelForm):
     class Meta:
         model = EnrtyModel
-        exclude = ['user_model_fk', 'create_date']
+        exclude = ['user_model_fk', 'update_date', 'create_date']
 
 
 # related item form to add or edit

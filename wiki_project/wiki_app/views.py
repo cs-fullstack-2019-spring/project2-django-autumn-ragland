@@ -71,7 +71,7 @@ def my_entries(request):
     return render(request, 'wiki_app/my_entries.html', context)
 
 
-# add new entry NEWLY BROKEN :(
+# add new entry
 def new_entry(request):
     # for logged in users
     if request.user.is_authenticated:
@@ -82,14 +82,13 @@ def new_entry(request):
         print(current_user)
         if request.method == 'POST':
 
-            # allow a default image/no image selection
+            # allow a default image/no image selection BROKEN
             tempImageFile = request.FILES
             if not request.FILES:
                 tempImageFile = 'images/default.jpeg'
 
             # on submit add entry to model with logged in user fk
-            EnrtyModel.objects.create(title=request.POST['title'], text=request.POST['text'],
-                                       image=tempImageFile,
+            EnrtyModel.objects.create(title=request.POST['title'], text=request.POST['text'], image=tempImageFile,
                                       user_model_fk=current_user)
             # on submit render home page
             return redirect('index')
@@ -152,11 +151,16 @@ def new_related(request, entry_id):
     # grab entry fk
     linked_entry = get_object_or_404(EnrtyModel, pk=entry_id)
 
+    # allow a default image/no image selection BROKEN
+    tempImageFile = request.FILES
+    if not request.FILES:
+        tempImageFile = 'images/default.jpeg'
+
     if request.method == 'POST':
         # on submit add related item to model with entry fk
         RelatedItemModel.objects.create(title=request.POST['title'], text=request.POST['text'],
 
-                                        image=request.FILES['image'], entry_model_fk=linked_entry)
+                                        image=tempImageFile, entry_model_fk=linked_entry)
         return redirect('index')
     # pass empty related item form
     context = {
@@ -168,8 +172,10 @@ def new_related(request, entry_id):
 
 # view related items
 def view_related(request, entry_id):
+    # grab related item(s) on fk
     linked_entry = EnrtyModel.objects.get(pk=entry_id)
     related = RelatedItemModel.objects.filter(entry_model_fk=linked_entry)
+    # pass item(s) to view items page
     context = {
         'related': related
     }
@@ -178,25 +184,33 @@ def view_related(request, entry_id):
 
 # edit related item BROKEN
 def edit_related(request, item_id):
+    # grab related item by id
     clicked_item = RelatedItemModel.objects.get(pk=item_id)
+    # render populated form
     form = RelatedItemForm(request.POST or None, request.FILES or None, instance=clicked_item)
 
     if request.method == 'POST':
+        # on submit save and redirect
         form.save()
         return redirect('my_entries')
 
+    # pass populated form to page
     context = {
         'form': form
     }
     return render(request, 'wiki_app/new_related.html', context)
 
 
-# delete related item BROKEN
+# delete related item
 def delete_related(request, item_id):
+    # grab related item by id
     related_item = get_object_or_404(RelatedItemModel, pk=item_id)
+
     if request.method == 'POST':
+        # on submit delete item and redirect
         related_item.delete()
         return redirect('my_entries')
+    # pass item in order to call item.title
     context = {
         'item': related_item
     }
