@@ -30,7 +30,7 @@
 
 {% else %}
 
-<h2>Please Log In To View Your Entries</h2>
+<h2>Please <a href="{% url 'login' %}">Log In</a> To View Your Entries</h2>
 
 {% endif %}
 {% endblock %}

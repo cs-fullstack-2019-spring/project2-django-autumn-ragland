@@ -1,4 +1,7 @@
+from django.conf import settings
 from django.urls import path
+from django.views.static import serve
+
 from . import views
 
 urlpatterns = [
@@ -25,4 +28,5 @@ urlpatterns = [
     path('edit_related/<int:item_id>/', views.edit_related, name='edit_related'),
     # delete related item
     path('delete_related/<int:item_id>', views.delete_related, name='delete_related'),
+    path('images/<path:path>/', serve, {'document_root': settings.MEDIA_ROOT, }),
 ]

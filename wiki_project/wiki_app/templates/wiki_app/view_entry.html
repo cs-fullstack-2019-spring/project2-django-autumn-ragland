@@ -14,7 +14,7 @@
     </section>
 
     <section class="view_image">
-    <img src="{{ entry.image }}" alt="image">
+    <img src="{{ entry.image.url }}"/>
     </section>
 
     {% if related %}
@@ -23,7 +23,7 @@
         {% for eachItem in related %}
         <h4>{{ eachItem.title }}</h4>
         <p>{{ eachItem.text }}</p>
-        <img class="related_image" src="{{ eachItem.image }}" alt="image">
+        <img class="related_image" src="{{ eachItem.image.url }}" alt="image">
         {% endfor %}
     <br>
     </section>

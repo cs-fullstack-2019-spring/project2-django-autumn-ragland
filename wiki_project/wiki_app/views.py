@@ -26,6 +26,9 @@ def view_entry(request, entry_id):
         'entry': entry,
         'related': related_info
     }
+    print(entry.image.path)
+    print(entry.image.url)
+    print(entry.image.name)
     # render view entry
     return render(request, 'wiki_app/view_entry.html', context)
 
@@ -81,7 +84,7 @@ def new_entry(request):
         if request.method == 'POST':
             # on submit add entry to model with logged in user fk
             EnrtyModel.objects.create(title=request.POST['title'], text=request.POST['text'],
-                                      image=request.POST['image'],
+                                      update_date=request.POST['update_date'], image=request.FILES['image'],
                                       user_model_fk=current_user)
             # on submit render home page
             return redirect('index')
@@ -148,7 +151,8 @@ def new_related(request, entry_id):
         # on submit add related item to model with entry fk
         RelatedItemModel.objects.create(title=request.POST['title'], text=request.POST['text'],
 
-                                        image=request.POST['image'], entry_model_fk=linked_entry)
+                                        image=request.FILES['image'], entry_model_fk=linked_entry)
+        return redirect('index')
     # pass empty related item form
     context = {
         'form': form
