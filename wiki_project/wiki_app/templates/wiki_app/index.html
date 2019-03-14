@@ -25,7 +25,7 @@
 
     <section class="index_body">
         <a href="{% url 'view_entry' eachEntry.id %}"><h3>{{ eachEntry.title }}</h3></a>
-        <p>{{ eachEntry.text }}</p>
+        <p>{{ eachEntry.text|slice:':250' }}...</p>
         <em>{{ eachEntry.user_model_fk }}</em>
         <em>{{ eachEntry.update_date }}</em>
         <hr>
