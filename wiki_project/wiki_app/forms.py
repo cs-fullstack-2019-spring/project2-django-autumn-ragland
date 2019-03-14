@@ -20,4 +20,4 @@ class EntryForm(forms.ModelForm):
 class RelatedItemForm(forms.ModelForm):
     class Meta:
         model = RelatedItemModel
-        exclude = ['entry_model_fk']
+        exclude = ['entry_model_fk', 'update_date', 'create_date']

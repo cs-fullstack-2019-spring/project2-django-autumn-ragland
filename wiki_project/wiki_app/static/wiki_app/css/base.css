@@ -1,62 +1,67 @@
+/*add body top, left, bottom, right margin*/
 body{
     margin: 1% 5% 5% 5%;
 }
+/*size images not in classes*/
 img{
     width: 100%;
     height: auto;
 }
-
+/*post grid display*/
 #view_grid{
     display: grid;
     grid-template-columns: 3fr 2fr 2fr;
 }
-
+/*post title and text */
 .view_body{
     margin: 1%;
     grid-column: 1;
 }
-
+/*post image*/
 .view_image{
     margin: 1%;
     grid-column: 2;
 }
+/*post related items*/
 .view_aside{
     background: lightgray;
     padding: 1%;
     border-radius: 1%;
     grid-column: 3;
 }
-
+/* all posts grid display*/
 #index_grid{
     display: grid;
     grid-template-columns: 3fr 1fr;
 }
+/* all posts title/test/author/update date */
 .index_body{
     grid-column: 1;
+    margin-bottom: 1%;
 }
+/*all posts image section grid placement*/
 .index_grid_image{
     grid-column: 2;
 }
+/*all posts image styling*/
 .index_image{
     width: 50%;
     align-content: center;
     padding: 1%;
     margin-bottom: 1%;
-
 }
-
-
+/*related image styling*/
 .related_image{
     width: 100%;
 }
-
+/*base footer styling*/
 .footer_base{
     text-align: center;
     background: lightgray;
     padding: 1%;
     margin-top: 1%;
 }
-
+/*base nav styling*/
 nav{
     text-align: center;
     background: lightgray;

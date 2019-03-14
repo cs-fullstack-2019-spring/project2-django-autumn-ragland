@@ -83,13 +83,14 @@ def new_entry(request):
         if request.method == 'POST':
 
             # allow a default image/no image selection BROKEN
-            tempImageFile = request.FILES
-            if not request.FILES:
+            tempImageFile = request.FILES['image']
+            if not request.FILES['image']:
                 tempImageFile = 'images/default.jpeg'
 
             # on submit add entry to model with logged in user fk
             EnrtyModel.objects.create(title=request.POST['title'], text=request.POST['text'], image=tempImageFile,
                                       user_model_fk=current_user)
+
             # on submit render home page
             return redirect('index')
         # pass empty user form
@@ -182,7 +183,7 @@ def view_related(request, entry_id):
     return render(request, 'wiki_app/view_related.html', context)
 
 
-# edit related item BROKEN
+# edit related item
 def edit_related(request, item_id):
     # grab related item by id
     clicked_item = RelatedItemModel.objects.get(pk=item_id)

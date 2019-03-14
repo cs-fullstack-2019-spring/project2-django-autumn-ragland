@@ -6,7 +6,11 @@
 
 {% for eachItem in related %}
 <h3>{{ eachItem.title }}</h3>
-{{ eachItem.text }}
+<p>{{ eachItem.text }}</p>
+Created: {{ eachItem.update_date }}
+<br>
+Updated: {{ eachItem.create_date }}
+<br>
 <a href="{% url 'edit_related' eachItem.id %}">Edit</a>
 <a href="{% url 'delete_related' eachItem.id %}">Delete</a>
 <br>
