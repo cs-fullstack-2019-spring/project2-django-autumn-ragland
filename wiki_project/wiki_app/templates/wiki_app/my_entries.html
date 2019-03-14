@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if request.user.is_authenticated %}
-
+    <h2>{{ request.user }} Entries</h2>
     {% if my_entries %}
 
     {% for entry in my_entries %}

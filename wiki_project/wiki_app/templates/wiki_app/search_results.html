@@ -1,11 +1,11 @@
 {% extends 'wiki_app/base.html' %}
 
 {% block content %}
-<h1>All Entries</h1>
-
+<h1>Search Results</h1>
+<a href="{% url 'index' %}">Back to Home</a>
 {% if all_entries %}
 <div id="index_grid">
-{% for eachEntry in all_entries %}
+    {% for eachEntry in all_entries %}
 
     <section class="index_body">
         <a href="{% url 'view_entry' eachEntry.id %}"><h3>{{ eachEntry.title }}</h3></a>
@@ -19,12 +19,11 @@
         <img class="index_image" src="{{ eachEntry.image.url }}" alt="image">
     </section>
 
-{% endfor %}
+    {% endfor %}
 </div>
 {% else %}
 
-<h2>There are no entries</h2>
+<h3>No Entries match your search</h3>
 
 {% endif %}
-
 {% endblock %}

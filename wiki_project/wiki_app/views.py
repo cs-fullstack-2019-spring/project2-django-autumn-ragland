@@ -25,7 +25,7 @@ def search(request):
         'all_entries': results
     }
     # render results on home page
-    return render(request, 'wiki_app/index.html', context)
+    return render(request, 'wiki_app/search_results.html', context)
 
 
 # view a wiki on click entry
