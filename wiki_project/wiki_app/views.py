@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserForm, UserModel, EnrtyModel, EntryForm, RelatedItemForm, RelatedItemModel
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 
 # view all wiki entries
@@ -12,6 +13,18 @@ def index(request):
         'all_entries': all_entries
     }
     # render home page
+    return render(request, 'wiki_app/index.html', context)
+
+
+# search bar
+def search(request):
+    # filter entry model by search
+    results = EnrtyModel.objects.filter(Q(title__contains=request.POST['searchBar']) | Q(text__contains=request.POST['searchBar']))
+    # pass results
+    context = {
+        'all_entries': results
+    }
+    # render results on home page
     return render(request, 'wiki_app/index.html', context)
 
 
@@ -81,10 +94,10 @@ def new_entry(request):
         current_user = UserModel.objects.get(name=request.user)
         print(current_user)
         if request.method == 'POST':
-
-            # allow a default image/no image selection BROKEN
-            tempImageFile = request.FILES['image']
-            if not request.FILES['image']:
+            # TODO
+            # allow a default image/no image selection BROKEN MUST NOT CHOOSE AN IMAGE
+            tempImageFile = request.FILES
+            if not request.FILES:
                 tempImageFile = 'images/default.jpeg'
 
             # on submit add entry to model with logged in user fk
@@ -151,10 +164,10 @@ def new_related(request, entry_id):
     form = RelatedItemForm(request.POST or None)
     # grab entry fk
     linked_entry = get_object_or_404(EnrtyModel, pk=entry_id)
-
-    # allow a default image/no image selection BROKEN
-    tempImageFile = request.FILES
-    if not request.FILES:
+    # TODO
+    # allow a default image/no image selection BROKEN MUST CHOOSE AN IMAGE
+    tempImageFile = request.FILES['image']
+    if not request.FILES['image']:
         tempImageFile = 'images/default.jpeg'
 
     if request.method == 'POST':

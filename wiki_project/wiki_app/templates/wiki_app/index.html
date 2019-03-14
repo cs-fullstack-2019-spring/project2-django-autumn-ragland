@@ -3,9 +3,16 @@
 {% block content %}
 <h1>WIKI</h1>
 
+<form class="searchBar" action="{% url 'search' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="searchBar" placeholder="search all entries...">
+    <button type="submit">Search</button>
+</form>
+
 {% if request.user.is_authenticated %}
 <h4>{{request.user}}</h4>
 <a href="{% url 'logout' %}">Logout</a>
+
 {% else %}
 <a href="{% url 'login' %}">Login</a>
 <a href="{% url 'new_user' %}">New User</a>
@@ -15,18 +22,19 @@
 {% if all_entries %}
 <div id="index_grid">
 {% for eachEntry in all_entries %}
+
     <section class="index_body">
-        <a href="{% url 'view_entry' eachEntry.id %}"><strong>{{ eachEntry.title }}</strong></a>
-        <br>
-        {{ eachEntry.text }}
-        <br>
+        <a href="{% url 'view_entry' eachEntry.id %}"><h3>{{ eachEntry.title }}</h3></a>
+        <p>{{ eachEntry.text }}</p>
         <em>{{ eachEntry.user_model_fk }}</em>
         <em>{{ eachEntry.update_date }}</em>
-        <br>
+        <hr>
     </section>
+
     <section class="index_grid_image">
         <img class="index_image" src="{{ eachEntry.image.url }}" alt="image">
     </section>
+
 {% endfor %}
 </div>
 {% else %}

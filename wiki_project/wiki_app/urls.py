@@ -33,4 +33,7 @@ urlpatterns = [
 
     # image field render
     path('images/<path:path>/', serve, {'document_root': settings.MEDIA_ROOT, }),
+
+    # search bar
+    path('search/', views.search, name='search'),
 ]
