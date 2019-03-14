@@ -92,13 +92,15 @@ def new_entry(request):
         form = EntryForm(request.POST or None)
         # determine logged in user
         current_user = UserModel.objects.get(name=request.user)
-        print(current_user)
         if request.method == 'POST':
-            # TODO
-            # allow a default image/no image selection BROKEN MUST NOT CHOOSE AN IMAGE
+
+            # allow a default image/no image selection
             tempImageFile = request.FILES
+            print(tempImageFile)
             if not request.FILES:
                 tempImageFile = 'images/default.jpeg'
+            else:
+                tempImageFile = tempImageFile["image"]
 
             # on submit add entry to model with logged in user fk
             EnrtyModel.objects.create(title=request.POST['title'], text=request.POST['text'], image=tempImageFile,
@@ -164,11 +166,13 @@ def new_related(request, entry_id):
     form = RelatedItemForm(request.POST or None)
     # grab entry fk
     linked_entry = get_object_or_404(EnrtyModel, pk=entry_id)
-    # TODO
-    # allow a default image/no image selection BROKEN MUST CHOOSE AN IMAGE
-    tempImageFile = request.FILES['image']
-    if not request.FILES['image']:
+
+    # allow a default image/no image selection
+    tempImageFile = request.FILES
+    if not request.FILES:
         tempImageFile = 'images/default.jpeg'
+    else:
+        tempImageFile = tempImageFile['image']
 
     if request.method == 'POST':
         # on submit add related item to model with entry fk
