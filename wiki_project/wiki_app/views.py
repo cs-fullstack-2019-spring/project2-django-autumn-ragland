@@ -70,9 +70,14 @@ def my_entries(request):
         # determine logged in user and model fk filter
         current_user = UserModel.objects.get(name=request.user)
         user_entries = EnrtyModel.objects.filter(user_model_fk=current_user)
+        # fixme
+        related_items = RelatedItemModel.objects.all()
+        print(related_items)
+
         # pass filtered entries
         context = {
-            'my_entries': user_entries
+            'my_entries': user_entries,
+            'related_items': related_items
         }
     # for users not logged in
     else:
@@ -107,7 +112,7 @@ def new_entry(request):
                                       user_model_fk=current_user)
 
             # on submit render home page
-            return redirect('index')
+            return redirect('my_entries')
         # pass empty user form
         context = {
             'form': form
@@ -179,7 +184,7 @@ def new_related(request, entry_id):
         RelatedItemModel.objects.create(title=request.POST['title'], text=request.POST['text'],
 
                                         image=tempImageFile, entry_model_fk=linked_entry)
-        return redirect('index')
+        return redirect('my_entries')
     # pass empty related item form
     context = {
         'form': form

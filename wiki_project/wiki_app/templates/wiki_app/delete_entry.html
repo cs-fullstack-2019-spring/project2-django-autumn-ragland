@@ -3,7 +3,7 @@
 {% block content %}
 <form method="POST">
     {% csrf_token %}
-    <h4>Are you sure you want to delete {{ item.title }}</h4>
+    <h4>Are you sure you want to delete {{ item.title }}?</h4>
     <button>Yes</button>
     <br>
     <a href="{% url 'my_entries' %}">BACK</a>

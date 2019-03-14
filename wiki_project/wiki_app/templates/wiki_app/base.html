@@ -13,19 +13,22 @@
 
     {% if request.user.is_authenticated %}
     <h4>{{request.user}}</h4>
+    <a href="{% url 'logout' %}">Logout</a>
+    <br>
     <a href="{% url 'index' %}">Home</a>
     <a href="{% url 'my_entries' %}">My Entries</a>
     <a href="{% url 'new_entry' %}">New Entry</a>
-    <br>
-    <a href="{% url 'logout' %}">Logout</a>
+
 
     {% else %}
+    <h4>Welcome</h4>
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'new_user' %}">New User</a>
+    <br>
     <a href="{% url 'index' %}">Home</a>
     <a href="{% url 'my_entries' %}">My Entries</a>
     <a href="{% url 'new_entry' %}">New Entry</a>
-    <br>
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'new_user' %}">New User</a>
+
     <br>
     {% endif %}
     <form class="searchBar" action="{% url 'search' %}" method="POST">

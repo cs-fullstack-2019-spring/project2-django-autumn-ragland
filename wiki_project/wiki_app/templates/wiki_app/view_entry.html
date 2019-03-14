@@ -4,36 +4,46 @@
 <div id="view_grid">
 
     <section class="view_body">
-    <h1>{{ entry.title }}</h1>
-    <br>
-    {{ entry.text }}
-    <br>
-    {{ entry.author }}
-    <br>
-    <a href="{% url 'index' %}">Back To Home</a>
+        <h1>{{ entry.title }}</h1>
+        <br/>
+        {{ entry.text }}
+        <br/>
+        {{ entry.author }}
+        <br/>
+        <a href="{% url 'index' %}">Back To Home</a>
+        <br/>
+
+        {% if request.user.username == entry.user_model_fk.name %}
+            <a href="{% url 'edit_entry' entry.id %}">
+                <button>Edit Post</button>
+            </a>
+            <a href="{% url 'delete_entry' entry.id %}">
+                <button>Delete Post</button>
+            </a>
+        {% endif %}
+
     </section>
 
     <section class="view_image">
-    <img src="{{ entry.image.url }}"/>
+        <img src="{{ entry.image.url }}"/>
     </section>
 
     {% if related %}
     <section class="view_aside">
-    <h3>Related Info</h3>
+        <h3>Related Info</h3>
         {% for eachItem in related %}
         <h4>{{ eachItem.title }}</h4>
         <p>{{ eachItem.text }}</p>
         <img class="related_image" src="{{ eachItem.image.url }}" alt="image">
         {% endfor %}
-    <br>
+        <br>
     </section>
     {% else %}
     <section class="view_aside">
-    <h4>Related Info</h4>
-    <p>There is no related info</p>
+        <h4>Related Info</h4>
+        <p>There is no related info</p>
     </section>
     {% endif %}
-
 
 
 </div>

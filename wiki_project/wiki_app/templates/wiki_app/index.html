@@ -14,10 +14,12 @@
         <em>{{ eachEntry.update_date }}</em>
         <hr>
     </section>
-
+    <!--fixme-->
+    {% if not request.FILES %}
     <section class="index_grid_image">
         <img class="index_image" src="{{ eachEntry.image.url }}" alt="image">
     </section>
+    {% endif %}
 
 {% endfor %}
 </div>
