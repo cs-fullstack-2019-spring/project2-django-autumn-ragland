@@ -1,8 +1,8 @@
 {% extends 'wiki_app/base.html' %}
 
 {% block content %}
-<h1>Search Results</h1>
-<a href="{% url 'index' %}">Back to Home</a>
+<h2>Search Results</h2>
+<hr/>
 {% if all_entries %}
 <div id="index_grid">
     {% for eachEntry in all_entries %}
@@ -10,9 +10,13 @@
     <section class="index_body">
         <a href="{% url 'view_entry' eachEntry.id %}"><h3>{{ eachEntry.title }}</h3></a>
         <p>{{ eachEntry.text|slice:':250' }}...</p>
+        {% for eachItem in related_items %}
+        {% if eachItem.entry_model_fk.title == eachEntry.title %}
+        <p>Related Item: {{ eachItem.title }}</p>
+        {% endif %}
+        {% endfor %}
         <em>{{ eachEntry.user_model_fk }}</em>
         <em>{{ eachEntry.update_date }}</em>
-        <hr>
     </section>
 
     <section class="index_grid_image">
@@ -26,4 +30,5 @@
 <h3>No Entries match your search</h3>
 
 {% endif %}
+<a href="{% url 'index' %}"><button class="btn btn-primary">Back to Home</button></a>
 {% endblock %}

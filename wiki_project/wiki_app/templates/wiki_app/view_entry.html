@@ -10,7 +10,7 @@
         <br/>
         {{ entry.author }}
         <br/>
-        <a href="{% url 'index' %}">Back To Home</a>
+        <a href="{% url 'index' %}"><button type="button" class="btn btn-primary">Back to Home</button></a>
         <br/>
 
         {% if request.user.username == entry.user_model_fk.name %}

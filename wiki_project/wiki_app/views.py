@@ -8,9 +8,11 @@ from django.db.models import Q
 def index(request):
     # get all entries
     all_entries = EnrtyModel.objects.all()
+    related_items = RelatedItemModel.objects.all()
     # pass entries
     context = {
-        'all_entries': all_entries
+        'all_entries': all_entries,
+        'related_items': related_items
     }
     # render home page
     return render(request, 'wiki_app/index.html', context)
@@ -20,9 +22,11 @@ def index(request):
 def search(request):
     # filter entry model by search
     results = EnrtyModel.objects.filter(Q(title__contains=request.POST['searchBar']) | Q(text__contains=request.POST['searchBar']))
+    related_items = RelatedItemModel.objects.all()
     # pass results
     context = {
-        'all_entries': results
+        'all_entries': results,
+        'related_items': related_items
     }
     # render results on home page
     return render(request, 'wiki_app/search_results.html', context)
@@ -70,12 +74,8 @@ def my_entries(request):
         # determine logged in user and model fk filter
         current_user = UserModel.objects.get(name=request.user)
         user_entries = EnrtyModel.objects.filter(user_model_fk=current_user)
-        print(user_entries)
-        print(current_user)
-        # fixme
+        # pull all related items
         related_items = RelatedItemModel.objects.all()
-        print(related_items)
-
         # pass filtered entries
         context = {
             'my_entries': user_entries,
@@ -135,6 +135,7 @@ def edit_entry(request, entry_id):
     entry_item = get_object_or_404(EnrtyModel, pk=entry_id)
     # populate entry form
     form = EntryForm(request.POST or None, request.FILES or None, instance=entry_item)
+    related = RelatedItemModel.objects.filter(entry_model_fk=entry_id)
 
     if request.method == 'POST':
         # on submit save edits
@@ -143,10 +144,11 @@ def edit_entry(request, entry_id):
         return redirect('my_entries')
     # pass populated entry form
     context = {
-        'form': form
+        'form': form,
+        'related_items': related
     }
     # render new entry page with POPULATED form
-    return render(request, 'wiki_app/new_entry.html', context)
+    return render(request, 'wiki_app/edit_entry.html', context)
 
 
 # delete entry

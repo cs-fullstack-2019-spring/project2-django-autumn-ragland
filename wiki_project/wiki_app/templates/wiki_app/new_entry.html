@@ -3,7 +3,8 @@
 {% block content %}
 
 {% if request.user.is_authenticated %}
-
+    <h2>New Entry</h2>
+    <hr/>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

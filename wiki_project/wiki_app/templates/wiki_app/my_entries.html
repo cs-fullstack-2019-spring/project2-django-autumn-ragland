@@ -16,23 +16,16 @@
     <p>Created: {{ entry.create_date }}</p>
     <p>Updated: {{ entry.update_date }}</p>
 
-    <!--fixme-->
-    {% if related_items %}
 
     {% for eachItem in related_items %}
-        <p>{{ related_items.title }}</p>
+        {% if eachItem.entry_model_fk.title == entry.title %}
+        <p>Related Item: {{ eachItem.title }}</p>
+        {% endif %}
     {% endfor %}
-
-    {% else %}
-        <p>Entry ID: {{ entry.id }}</p>
-        <p>There are no related items</p>
-
-    {% endif %}
 
     <a href="{% url 'edit_entry' entry.id %}"><button type="button" class="btn btn-light">Edit Post</button></a>
     <a href="{% url 'delete_entry' entry.id %}"><button type="button" class="btn btn-light">Delete Post</button></a>
     <a href="{% url 'new_related' entry.id %}"><button type="button" class="btn btn-light">Add Related</button></a>
-    <a href="{% url 'view_related' entry.id %}"><button type="button" class="btn btn-light">Edit Related</button></a>
     </section>
 
     <section class="index_grid_image">

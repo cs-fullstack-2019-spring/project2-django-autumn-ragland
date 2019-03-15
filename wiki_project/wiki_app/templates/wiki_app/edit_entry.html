@@ -1,0 +1,27 @@
+{% extends 'wiki_app/base.html' %}
+
+{% block content %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary">Submit</button>
+        </form>
+
+        {% for eachItem in related_items %}
+        <div id="relatedEdit">
+        <section class="title">
+        Related Content: {{ eachItem.title }}
+        </section>
+        <section class="edit_button">
+            <a href="{% url 'edit_related' eachItem.id %}"><button type="button" class="btn btn-info">Edit Related</button></a>
+        </section>
+        <section class="delete_button">
+            <a href="{% url 'delete_related' eachItem.id %}"><button type="button" class="btn btn-danger">Delete Related</button></a>
+        </section>
+        </div>
+        {% endfor %}
+
+        <br>
+        <a href="{% url 'my_entries' %}"><button type="button" class="btn btn-light">Back</button></a>
+{% endblock %}

@@ -38,6 +38,7 @@ img{
 .index_body{
     grid-column: 1;
     border-bottom: 1px solid lightgray;
+    padding-bottom: 1%;
 }
 /*all posts image section grid placement*/
 .index_grid_image{
@@ -70,5 +71,24 @@ nav{
     background: lightgray;
     padding:1%;
     margin-bottom: 1%;
+}
+button{
+    margin: 1%;
+}
+#relatedEdit{
+    display: grid;
+    width: 50%;
+    grid-template-columns: 2fr 1fr 1fr;
+    border-bottom: 1px solid lightgray;
+    padding: 1%;
+}
+.title{
+    grid-column: 1;
+}
+.edit_button{
+    grid-column: 2;
+}
+.delete_button{
+    grid-column: 3;
 }
 
