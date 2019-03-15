@@ -13,7 +13,7 @@ class UserModel(models.Model):
     user_fk = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.name + "This"
+        return self.name
 
 
 # entry model

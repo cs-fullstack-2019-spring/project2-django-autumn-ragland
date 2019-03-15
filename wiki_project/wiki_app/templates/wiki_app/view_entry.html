@@ -20,6 +20,9 @@
             <a href="{% url 'delete_entry' entry.id %}">
                 <button>Delete Post</button>
             </a>
+            <a href="{% url 'new_related' entry.id %}">
+                <button>Add Related</button>
+            </a>
         {% endif %}
 
     </section>
