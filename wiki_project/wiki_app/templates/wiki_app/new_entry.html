@@ -7,7 +7,7 @@
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button>post entry</button>
+        <button class="btn btn-primary">Submit</button>
     </form>
     <a href="{% url 'my_entries' %}">Back</a>
 

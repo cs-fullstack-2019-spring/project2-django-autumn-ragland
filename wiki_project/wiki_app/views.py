@@ -70,6 +70,8 @@ def my_entries(request):
         # determine logged in user and model fk filter
         current_user = UserModel.objects.get(name=request.user)
         user_entries = EnrtyModel.objects.filter(user_model_fk=current_user)
+        print(user_entries)
+        print(current_user)
         # fixme
         related_items = RelatedItemModel.objects.all()
         print(related_items)

@@ -37,11 +37,14 @@ img{
 /* all posts title/test/author/update date */
 .index_body{
     grid-column: 1;
-    margin-bottom: 1%;
+    border-bottom: 1px solid lightgray;
 }
 /*all posts image section grid placement*/
 .index_grid_image{
     grid-column: 2;
+    text-align: center;
+    padding-top: 10%;
+
 }
 /*all posts image styling*/
 .index_image{
@@ -68,3 +71,4 @@ nav{
     padding:1%;
     margin-bottom: 1%;
 }
+

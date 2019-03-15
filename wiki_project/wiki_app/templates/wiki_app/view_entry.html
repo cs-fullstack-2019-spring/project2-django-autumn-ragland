@@ -15,13 +15,13 @@
 
         {% if request.user.username == entry.user_model_fk.name %}
             <a href="{% url 'edit_entry' entry.id %}">
-                <button>Edit Post</button>
+                <button type="button" class="btn btn-light">Edit Post</button>
             </a>
             <a href="{% url 'delete_entry' entry.id %}">
-                <button>Delete Post</button>
+                <button type="button" class="btn btn-light">Delete Post</button>
             </a>
             <a href="{% url 'new_related' entry.id %}">
-                <button>Add Related</button>
+                <button type="button" class="btn btn-light">Add Related</button>
             </a>
         {% endif %}
 

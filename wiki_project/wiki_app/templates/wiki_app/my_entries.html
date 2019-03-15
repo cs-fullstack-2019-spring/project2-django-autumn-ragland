@@ -4,6 +4,7 @@
 
 {% if request.user.is_authenticated %}
     <h2>{{ request.user }}'s Entries</h2>
+    <hr/>
     {% if my_entries %}
 
     <div id="index_grid">
@@ -12,21 +13,26 @@
     <section class="index_body">
     <a href="{% url 'view_entry' entry.id %}"><h4>{{ entry.title }}</h4></a>
     <p>{{ entry.text|slice:':250' }}...</p>
-    Created: {{ entry.create_date }}
-    <br>
-    Updated: {{ entry.update_date }}
+    <p>Created: {{ entry.create_date }}</p>
+    <p>Updated: {{ entry.update_date }}</p>
+
     <!--fixme-->
-    {{ related_items.title }}
     {% if related_items %}
+
+    {% for eachItem in related_items %}
         <p>{{ related_items.title }}</p>
+    {% endfor %}
+
     {% else %}
+        <p>Entry ID: {{ entry.id }}</p>
         <p>There are no related items</p>
+
     {% endif %}
 
-    <a href="{% url 'edit_entry' entry.id %}"><button>Edit Post</button></a>
-    <a href="{% url 'delete_entry' entry.id %}"><button>Delete Post</button></a>
-    <a href="{% url 'new_related' entry.id %}"><button>Add Related</button></a>
-    <a href="{% url 'view_related' entry.id %}"><button>Edit Related</button></a>
+    <a href="{% url 'edit_entry' entry.id %}"><button type="button" class="btn btn-light">Edit Post</button></a>
+    <a href="{% url 'delete_entry' entry.id %}"><button type="button" class="btn btn-light">Delete Post</button></a>
+    <a href="{% url 'new_related' entry.id %}"><button type="button" class="btn btn-light">Add Related</button></a>
+    <a href="{% url 'view_related' entry.id %}"><button type="button" class="btn btn-light">Edit Related</button></a>
     </section>
 
     <section class="index_grid_image">

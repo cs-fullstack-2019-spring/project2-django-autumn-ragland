@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>All Entries</h1>
-
+<hr/>
 {% if all_entries %}
 <div id="index_grid">
 {% for eachEntry in all_entries %}
@@ -12,7 +12,6 @@
         <p>{{ eachEntry.text|slice:':250' }}...</p>
         <em>{{ eachEntry.user_model_fk }}</em>
         <em>{{ eachEntry.update_date }}</em>
-        <hr>
     </section>
     <!--fixme-->
     {% if not request.FILES %}

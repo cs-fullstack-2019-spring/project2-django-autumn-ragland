@@ -34,7 +34,7 @@
     <form class="searchBar" action="{% url 'search' %}" method="POST">
         {% csrf_token %}
         <input type="text" name="searchBar" placeholder="search all entries...">
-        <button type="submit">Search</button>
+        <button type="submit" class="btn btn-light btn-sm">Search</button>
     </form>
 </nav>
 

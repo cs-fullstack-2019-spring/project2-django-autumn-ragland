@@ -11,8 +11,8 @@ Created: {{ eachItem.create_date }}
 <br>
 Updated: {{ eachItem.update_date }}
 <br>
-<a href="{% url 'edit_related' eachItem.id %}">Edit</a>
-<a href="{% url 'delete_related' eachItem.id %}">Delete</a>
+<a href="{% url 'edit_related' eachItem.id %}"><button class="btn btn-light">Edit</button></a>
+<a href="{% url 'delete_related' eachItem.id %}"><button class="btn btn-light">Delete</button></a>
 <br>
 {% endfor %}
 <a href="{% url 'my_entries' %}">Back</a>
