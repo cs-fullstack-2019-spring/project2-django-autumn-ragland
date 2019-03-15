@@ -1,7 +1,8 @@
 {% extends 'wiki_app/base.html' %}
 
 {% block content %}
-
+<h2>Related Content</h2>
+<hr/>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
