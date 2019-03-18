@@ -10,7 +10,7 @@
 <body>
 
 <nav>
-
+{# nav bar based on logged in or not #}
     {% if request.user.is_authenticated %}
     <h3>{{request.user}}</h3>
     <a href="{% url 'logout' %}">Logout</a>
@@ -31,6 +31,7 @@
 
     <br>
     {% endif %}
+{#search bar form #}
     <form class="searchBar" action="{% url 'search' %}" method="POST">
         {% csrf_token %}
         <input type="text" name="searchBar" placeholder="search all entries...">
@@ -41,6 +42,7 @@
 {% block content %}
 
 {% endblock %}
+{# footer #}
 <footer class="footer_base">
     <p>created by autumn ragland codecrew 2019</p>
 </footer>

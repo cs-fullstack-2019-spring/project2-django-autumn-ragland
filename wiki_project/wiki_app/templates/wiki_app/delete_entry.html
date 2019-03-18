@@ -1,11 +1,12 @@
 {% extends 'wiki_app/base.html' %}
 
 {% block content %}
+{# delete confirmation form #}
 <form method="POST">
     {% csrf_token %}
     <h4>Are you sure you want to delete {{ item.title }}?</h4>
     <button type="submit" class="btn btn-danger">Yes</button>
 </form>
-
+{#back to my entries html button#}
 <a href="{% url 'my_entries' %}"><button class="btn btn-primary">Back</button></a>
 {% endblock %}

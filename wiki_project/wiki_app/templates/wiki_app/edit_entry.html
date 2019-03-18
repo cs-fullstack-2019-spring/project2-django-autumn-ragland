@@ -1,13 +1,13 @@
 {% extends 'wiki_app/base.html' %}
 
 {% block content %}
-
+{#edit entry populated form #}
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button class="btn btn-primary">Submit</button>
         </form>
-
+{#render related items with options to edit or delete in a grid#}
         {% for eachItem in related_items %}
         <div id="relatedEdit">
         <section class="title">

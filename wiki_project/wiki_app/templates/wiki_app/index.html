@@ -1,6 +1,7 @@
 {% extends 'wiki_app/base.html' %}
 
 {% block content %}
+{# render entries in a grid with related items listed #}
 <h2>All Wiki Entries</h2>
 <hr/>
 {% if all_entries %}
@@ -20,12 +21,6 @@
 
 
     </section>
-    <!--fixme-->
-    {% if not request.FILES %}
-    <section class="index_grid_image">
-        <img class="index_image" src="{{ eachEntry.image.url }}" alt="image">
-    </section>
-    {% endif %}
 
 {% endfor %}
 </div>

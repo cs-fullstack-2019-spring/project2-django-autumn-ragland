@@ -1,7 +1,7 @@
 {% extends 'wiki_app/base.html' %}
 
 {% block content %}
-
+{#render user entries in a grid with options to edit, delete, or add related#}
 {% if request.user.is_authenticated %}
     <h2>{{ request.user }}'s Entries</h2>
     <hr/>
